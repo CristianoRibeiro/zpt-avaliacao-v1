@@ -1,0 +1,34 @@
+# Arquivos de sistema operacional e backup
+.DS_Store
+Thumbs.db
+*.bak
+*.swp
+
+# Arquivos de dependências e bibliotecas
+/node_modules
+/vendor
+
+# Arquivos de compilação e build
+/build
+/dist
+
+# Arquivos de log
+/logs
+*.log
+
+# Arquivos de ambiente e configuração
+.env
+.env.local
+.env.*.local
+.env.*.php
+.env.php
+
+# Arquivos de cache
+.cache
+/cache
+
+# Arquivos temporários
+.tmp
+/temp
+*.temp
+/db_data
