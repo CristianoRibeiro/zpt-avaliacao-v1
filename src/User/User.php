@@ -1,6 +1,7 @@
 <?php
 namespace User;
 
+use Database\Database;
 class User {
 	private $db;
 
@@ -8,7 +9,7 @@ class User {
         $usernames = [];
 
         $query = 'SELECT username FROM user WHERE id IN (' . implode(',', $ids) . ')';
-        $results = $this->db->q($query);
+        $results = $this->db->query($query);        
 
         foreach ($results as $result) {
             $usernames[] = $result['username'];
@@ -22,10 +23,9 @@ class User {
         $query = 'SELECT ud.user, MAX(d.employees) AS max_employees, d.name AS department_name
                   FROM user_department ud
                   JOIN department d ON ud.department = d.id
-                  GROUP BY ud.user';
+                  GROUP BY ud.user, d.name';
 
-        $results = $this->db->q($query);
-
+        $results = $this->db->query($query);
         $maxDepartments = [];
 
         // Iterar sobre os resultados
@@ -67,22 +67,9 @@ class User {
 	*/
 
 
-	public function setDb($db) {
-		if (!$db || $db->isClosed()) {
-			return false;
-		}
-
-		if ($db->debug) {
-			$db->setGeneralLog('on');
-			error_log($db);
-		}
-
-		if ($db->profiling) {
-			$db->setSlowLog('on');
-		}
-
-		$this->db = $db;
-	}
+	public function setDb(Database $db) {
+        $this->db = $db;
+   }
 }
 
 ?>
