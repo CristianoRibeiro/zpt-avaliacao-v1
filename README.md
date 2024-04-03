@@ -65,3 +65,33 @@ WHERE user.username = 'zpt'
 9) Crie a classe `CompanyClient`, que é uma `Company` que, além do `id`, tem um número chamado `registration`. A saudação deve exibir o `id` e o `registration`.
 
 10) Qual commit introduziu [este erro](./src/Department.php#L10)? Explique e corrija o erro.
+
+
+# Como executar o projeto
+
+1. Certifique-se de ter o Docker e o Docker Compose instalados em sua máquina.
+
+2. Clone o repositório do projeto para o seu ambiente local.
+
+3. Navegue até o diretório do projeto no terminal.
+
+4. Execute o comando a seguir para construir e iniciar os contêineres:
+
+    ```
+    docker-compose up
+    ```
+
+5. Aguarde até que todos os serviços sejam inicializados. Isso pode levar alguns minutos na primeira execução.
+
+6. Após a inicialização, você pode acessar o projeto nos seguintes URLs:
+
+   - Para acessar o aplicativo: [http://localhost:8080/src/](http://localhost:8080/src/)
+   - Para acessar o aplicativo Company: [http://localhost:8080/src/Company/](http://localhost:8080/src/Company/)
+
+7. Quando terminar, você pode parar os contêineres pressionando `Ctrl + C` no terminal onde o `docker-compose up` está sendo executado. Em seguida, você pode limpar os contêineres com o seguinte comando:
+
+    ```
+    docker-compose down
+    ```
+
+Isso encerrará os contêineres e limpará quaisquer recursos associados.
