@@ -17,6 +17,7 @@ RUN apt-get update && \
     mysqli \
     gd \
     zip \
+    && docker-php-ext-install mysqli \
     && a2enmod rewrite
 
 # Instale o phpMyAdmin
