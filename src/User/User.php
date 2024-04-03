@@ -1,6 +1,9 @@
 <?php
 namespace User;
 
+use Database\Database;
+
+
 class User {
 	private $db;
 
@@ -8,7 +11,7 @@ class User {
         $usernames = [];
 
         $query = 'SELECT username FROM user WHERE id IN (' . implode(',', $ids) . ')';
-        $results = $this->db->q($query);
+        $results = $this->db->query($query);
 
         foreach ($results as $result) {
             $usernames[] = $result['username'];
@@ -24,7 +27,7 @@ class User {
                   JOIN department d ON ud.department = d.id
                   GROUP BY ud.user';
 
-        $results = $this->db->q($query);
+        $results = $this->db->query($query);
 
         $maxDepartments = [];
 
@@ -67,22 +70,9 @@ class User {
 	*/
 
 
-	public function setDb($db) {
-		if (!$db || $db->isClosed()) {
-			return false;
-		}
-
-		if ($db->debug) {
-			$db->setGeneralLog('on');
-			error_log($db);
-		}
-
-		if ($db->profiling) {
-			$db->setSlowLog('on');
-		}
-
-		$this->db = $db;
-	}
+	public function setDb(Database $db) {
+         $this->db = $db;
+    }
 }
 
 ?>

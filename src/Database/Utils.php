@@ -1,8 +1,7 @@
 <?php
-require_once './User.php';
+require_once './Database.php';
 
-function setDb(User\User $user, $db) {
-	$user->setDb($db);
-}
-
+	function setDb($object, Database $db) {
+		$object->setDb($db);
+	}
 ?>
