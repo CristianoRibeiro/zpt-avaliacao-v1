@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>My IP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My IP</title>
 </head>
 <body>
-	<p>My IP is <span id="ip"/></p>
+    <p>My IP is <span id="ip"></span></p>
+
+    <script>
+        function getIP() {
+            // Fazer a requisição AJAX para a API
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://ipinfo.io/json', true);
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+
+					var data = JSON.parse(xhr.responseText);
+
+					document.getElementById('ip').textContent = data.ip;
+                } else {
+                    console.error('Erro ao obter o IP:', xhr.statusText);
+                }
+            };
+            xhr.onerror = function () {
+                console.error('Erro de rede ao tentar obter o IP.');
+            };
+            xhr.send();
+        }
+
+        window.onload = getIP;
+    </script>
 </body>
 </html>
