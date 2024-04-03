@@ -5,14 +5,17 @@ class User {
 	private $db;
 
 	public function g($ids) {
-		$users = [];
+        $usernames = [];
 
-		foreach ($ids as $id) {
-			$users[] = $this->db->q('SELECT username FROM user WHERE id = ' . $id);
-		}
+        $query = 'SELECT username FROM user WHERE id IN (' . implode(',', $ids) . ')';
+        $results = $this->db->q($query);
 
-		return $users;
-	}
+        foreach ($results as $result) {
+            $usernames[] = $result['username'];
+        }
+		
+        return $usernames;
+    }
 
 	public function setDb($db) {
 		if (!$db || $db->isClosed()) {
