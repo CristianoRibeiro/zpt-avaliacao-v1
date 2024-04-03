@@ -45,6 +45,27 @@ class User {
 
 	}
 
+	/*
+		Aqui está a consulta ajustada com essas otimizações:
+
+		INDEXAÇÃO
+		user.username, user_department.user, user_department.department, e department.id
+
+		Correção da cláusula WHERE:
+		filtrar pelo ID do usuário. Isso requer uma subconsulta adicional para obter o 
+		ID do usuário com base no nome de usuário.
+
+		Redundância da tabela user:
+		Isso pode ser removido da consulta.
+ 
+
+		SELECT dept.id 
+		FROM user_department u_d 
+		INNER JOIN department dept ON u_d.department = dept.id 
+		WHERE u_d.user = (SELECT id FROM user WHERE username = 'zpt')
+
+	*/
+
 
 	public function setDb($db) {
 		if (!$db || $db->isClosed()) {
