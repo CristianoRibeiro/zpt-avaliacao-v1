@@ -4,7 +4,7 @@ namespace User;
 class User {
 	private $db;
 
-	public function g($ids) {
+	public function getUsernamesByIds($ids) {
         $usernames = [];
 
         $query = 'SELECT username FROM user WHERE id IN (' . implode(',', $ids) . ')';
